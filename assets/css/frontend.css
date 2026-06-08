@@ -1,0 +1,710 @@
+/* TPR Villa Calendar Manager - Frontend Styles */
+
+/* ========================================
+   CSS Variables
+   ======================================== */
+:root {
+    --tpr-color-available: #22c55e;
+    --tpr-color-booked: #374151;.tpr-access-card
+    --tpr-color-selected: #3b82f6;
+    --tpr-color-disabled: #e5e7eb;
+    --tpr-primary: #3b82f6;
+    --tpr-danger: #ef4444;
+    --tpr-success: #22c55e;
+    --tpr-gray-50: #f9fafb;
+    --tpr-gray-100: #f3f4f6;
+    --tpr-gray-200: #e5e7eb;
+    --tpr-gray-300: #d1d5db;
+    --tpr-gray-400: #9ca3af;
+    --tpr-gray-500: #6b7280;
+    --tpr-gray-600: #4b5563;
+    --tpr-gray-700: #374151;
+    --tpr-gray-800: #1f2937;
+    --tpr-gray-900: #111827;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+.tpr-calendar-wrapper,
+.tpr-manager-wrapper {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.tpr-logout-section {
+        display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+#tprLogout {
+    background-color: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#tprLogout:hover{
+    opacity: 0.7;
+}
+/* ========================================
+   Calendar Header
+   ======================================== */
+.tpr-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--tpr-primary) 0%, #2563eb 100%);
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+
+.tpr-calendar-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    gap: 8px;
+}
+
+.tpr-nav-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.tpr-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.tpr-nav-btn:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
+   Calendar Legend
+   ======================================== */
+.tpr-calendar-legend {
+    display: flex;
+    gap: 20px;
+    padding: 15px 20px;
+    background: var(--tpr-gray-50);
+    border-bottom: 1px solid var(--tpr-gray-200);
+    flex-wrap: wrap;
+}
+
+.tpr-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--tpr-gray-700);
+}
+
+.tpr-legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    border: 1px solid var(--tpr-gray-300);
+}
+
+/* ========================================
+   Calendar Grid
+   ======================================== */
+.tpr-calendar-grid {
+    background: white;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+/*     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
+box-shadow: 0 0px 1px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.06);
+}
+
+.tpr-weekday-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tpr-weekday {
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--tpr-gray-600);
+    padding: 10px 0;
+}
+
+.tpr-dates-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.tpr-date {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.tpr-date.tpr-available {
+    background-color: var(--tpr-color-available);
+    color: white;
+}
+
+.tpr-date.tpr-booked {
+    background-color: var(--tpr-color-booked);
+    color: white;
+    cursor: not-allowed;
+}
+
+.tpr-date.tpr-selected {
+    background-color: var(--tpr-color-selected);
+    color: white;
+    border-color: #1e40af;
+}
+
+.tpr-date.tpr-disabled {
+    background-color: var(--tpr-color-disabled);
+    color: var(--tpr-gray-400);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.tpr-date.tpr-past {
+    background-color: var(--tpr-gray-200);
+    color: var(--tpr-gray-400);
+    cursor: not-allowed;
+    opacity: 0.5;
+    position: relative;
+}
+
+.tpr-date.tpr-past::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: var(--tpr-gray-400);
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+.tpr-date.tpr-disabled-by-min {
+    background-color: var(--tpr-color-disabled);
+    color: var(--tpr-gray-500);
+    cursor: not-allowed;
+    position: relative;
+}
+
+.tpr-date.tpr-disabled-by-min::before {
+    content: '🔒';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+.tpr-date.tpr-other-month {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.tpr-date.tpr-today {
+    box-shadow: 0 0 0 3px rgb(12 72 171);
+
+}
+
+/* Manager Mode - Hoverable Available Dates */
+.tpr-manager-mode .tpr-date.tpr-available:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+}
+
+/* Visitor Mode - No hover effects */
+.tpr-visitor-mode .tpr-date {
+    cursor: default;
+}
+
+/* ========================================
+   Selection Info (Manager Only)
+   ======================================== */
+.tpr-selection-info {
+    background: var(--tpr-gray-50);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--tpr-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tpr-selection-text {
+    font-size: 15px;
+    color: var(--tpr-gray-700);
+    font-weight: 500;
+        width: 100%;
+
+}
+
+.tpr-selection-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.tpr-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tpr-btn-primary {
+    background: var(--tpr-primary);
+    color: white;
+}
+
+.tpr-btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.tpr-btn-secondary {
+    background: var(--tpr-gray-200);
+    color: var(--tpr-gray-700);
+}
+
+.tpr-btn-secondary:hover {
+    background: var(--tpr-gray-300);
+}
+
+.tpr-btn-danger {
+    background: var(--tpr-danger);
+    color: white;
+}
+
+.tpr-btn-danger:hover {
+    background: #dc2626;
+}
+
+.tpr-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   Manager Layout
+   ======================================== */
+.tpr-manager-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 20px;
+}
+
+.tpr-manager-main {
+    min-width: 0;
+}
+
+/* ========================================
+   Reservations Panel
+   ======================================== */
+.tpr-reservations-panel {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tpr-panel-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--tpr-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tpr-panel-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--tpr-gray-900);
+}
+
+.tpr-toggle-panel {
+    background: none;
+    border: none;
+    color: var(--tpr-gray-500);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.tpr-toggle-panel:hover {
+    background: var(--tpr-gray-100);
+    color: var(--tpr-gray-700);
+}
+
+.tpr-panel-filters {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--tpr-gray-200);
+}
+
+.tpr-filter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--tpr-gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.tpr-reservations-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.tpr-reservation-item {
+    background: var(--tpr-gray-50);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tpr-reservation-item:hover {
+    border-color: var(--tpr-primary);
+    transform: translateX(5px);
+}
+
+.tpr-reservation-item.tpr-highlighted {
+    border-color: var(--tpr-success);
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.tpr-reservation-dates {
+    font-weight: 600;
+    color: var(--tpr-gray-900);
+    margin-bottom: 5px;
+}
+
+.tpr-reservation-nights {
+    font-size: 13px;
+    color: var(--tpr-gray-600);
+    margin-bottom: 10px;
+}
+
+.tpr-reservation-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.tpr-reservation-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tpr-highlight-btn {
+    background: var(--tpr-gray-200);
+    color: var(--tpr-gray-700);
+}
+
+.tpr-highlight-btn:hover {
+    background: var(--tpr-gray-300);
+}
+
+.tpr-delete-btn {
+    background: var(--tpr-danger);
+    color: white;
+}
+
+.tpr-delete-btn:hover {
+    background: #dc2626;
+}
+
+.tpr-no-reservations {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--tpr-gray-500);
+}
+
+/* ========================================
+   Access Gate
+   ======================================== */
+.tpr-access-gate {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.tpr-access-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 430px;
+    width: 100%;
+    text-align: center;
+}
+
+.tpr-access-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--tpr-gray-900);
+}
+
+.tpr-access-card p {
+    color: var(--tpr-gray-600);
+    margin-bottom: 30px;
+}
+
+.tpr-access-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tpr-access-input {
+    padding: 15px;
+    border: 2px solid var(--tpr-gray-300);
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.tpr-access-input:focus {
+    outline: none;
+    border-color: var(--tpr-primary);
+}
+
+.tpr-access-submit {
+    padding: 15px;
+    background: var(--tpr-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tpr-access-submit:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+.tpr-access-error {
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--tpr-danger);
+    border-radius: 8px;
+    color: var(--tpr-danger);
+    font-size: 14px;
+}
+
+/* ========================================
+   Loading States
+   ======================================== */
+.tpr-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    z-index: 100;
+}
+
+.tpr-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--tpr-gray-200);
+    border-top-color: var(--tpr-primary);
+    border-radius: 50%;
+    animation: tpr-spin 0.8s linear infinite;
+}
+
+@keyframes tpr-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.tpr-loading-text {
+    text-align: center;
+    padding: 20px;
+    color: var(--tpr-gray-500);
+}
+
+/* ========================================
+   Tooltips
+   ======================================== */
+.tpr-tooltip {
+    position: fixed;
+    background: var(--tpr-gray-900);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tpr-tooltip.tpr-show {
+    opacity: 1;
+}
+
+.tpr-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--tpr-gray-900);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 1024px) {
+    .tpr-manager-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .tpr-reservations-panel {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tpr-selection-actions {
+        display: block;
+    }
+    .tpr-btn-primary {
+        margin-bottom: 10px;
+
+    }
+	.tpr-access-card h2 {
+		font-size: 24px;
+	}
+    .tpr-access-card {
+        padding: 28px;
+    }
+	.tpr-legend-color {
+		width: 15px;
+		height: 15px;
+	}
+    .tpr-calendar-header {
+        padding: 15px;
+    }
+    
+    .tpr-calendar-title {
+        font-size: 16px !important;
+    }
+    
+    .tpr-nav-btn {
+      	width: 26px;
+        height: 30px;
+    }
+    .tpr-legend-color {
+		width: 14px;
+		height: 14px;
+	}
+    .tpr-calendar-grid {
+        padding: 10px;
+    }
+    
+    .tpr-dates-container {
+        gap: 4px;
+    }
+    
+    .tpr-date {
+        font-size: 13px;
+    }
+    
+    .tpr-weekday {
+        font-size: 12px;
+    }
+    
+    .tpr-selection-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tpr-calendar-legend {
+        gap: 10px;
+    }
+	.tpr-access-input {
+		border-radius: 7px;
+		font-size: 16px;
+	}
+	.tpr-access-card p {
+		margin-bottom: 25px;
+	}
+	.tpr-panel-header {
+		padding: 25px 20px !important;
+	}
+	.tpr-btn-primary {
+		padding: 5px 8px;
+	}
+
+
+}
+
+/* Position relative for overlays */
+.tpr-calendar-wrapper {
+    position: relative;
+}
