@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name: Villa Calendar Manager
- * Plugin URI: https://example.com/tpr-villa-calendar-manager
+ * Plugin Name: TPR Villa Calendar Manager
+ * Plugin URI: https://github.com/hannan-tariq-developer/villa-calendar-manager
  * Description: Professional frontend-based villa availability & reservation management system with AJAX controls
  * Version: 1.0.0
- * Author: TPR Development
- * Author URI: https://example.com
- * Text Domain: tpr-villa-calendar
+ * Author: Hannan Tariq
+ * Author URI: https://www.linkedin.com/in/hannan-tariq-developer/
  * Domain Path: /languages
  */
 
